@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "d0c56ba67837f9d388a4f1998d28b40a0b628810"
+version = "0.1.0"
+description = ""
+authors = ["mariannabaldez <marianna.baldez@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pyton = "^0.1.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
