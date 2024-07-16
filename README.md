@@ -1,3 +1,90 @@
+# CSV Processor
+
+## Descrição
+
+O **CSV Processor** é uma biblioteca para processamento de arquivos CSV, permitindo a seleção de colunas específicas e aplicação de filtros nas linhas. Este projeto utiliza Python e foi desenvolvido para rodar em um ambiente Docker.
+
+## Requisitos
+
+- Docker
+- Python 3.8+
+- `poetry` para gerenciamento de dependências
+
+## Instruções de Instalação
+
+1. Clone o repositório:
+    ```sh
+    git clone https://github.com/seu-usuario/csv-processor.git
+    cd csv-processor
+    ```
+
+2. Construa a imagem Docker:
+    ```sh
+    docker build -t csv_processor .
+    ```
+
+3. Para rodar o conteiner:
+    ```sh
+    docker run -v $(pwd):/app -it csv_processor
+    ```
+
+## Uso
+
+### Funções Principais
+
+- **`process_csv`**: Processa dados CSV recebidos como string, aplicando filtros e selecionando colunas.
+
+    ```python
+    from your_module import process_csv
+
+    csv_data = """name,age,city
+    Alice,30,New York
+    Bob,25,Los Angeles
+    Charlie,35,Chicago
+    David,30,New York
+    """
+
+    selected_columns = "name,city"
+    row_filter_definitions = "age=30"
+
+    result = process_csv(csv_data, selected_columns, row_filter_definitions)
+    print(result)
+    ```
+
+- **`process_csv_file`**: Processa um arquivo CSV, aplicando filtros e selecionando colunas.
+
+    ```python
+    from your_module import process_csv_file
+
+    csv_file_path = "path/to/your/file.csv"
+    selected_columns = "name,city"
+    row_filter_definitions = "age=30"
+
+    result = process_csv_file(csv_file_path, selected_columns, row_filter_definitions)
+    print(result)
+    ```
+
+### Executando Testes
+
+Para rodar os testes unitários, utilize o comando:
+
+```sh
+docker run -v $(pwd):/app -it csv_processor pytest
+
+### Compilador para linguagem C
+
+O arquivo `libcsv.c` é responsável por compilar as funções Python para C, otimizando o desempenho do processamento CSV. Este arquivo é compilado e utilizado como uma biblioteca compartilhada (`.so`) dentro do conteiner Docker.
+
+Para compilar e utilizar o `libcsv.c`, siga os passos abaixo:
+
+1. Certifique-se de que o `libcsv.c` está presente no diretório do projeto.
+2. A compilação é realizada automaticamente durante a construção da imagem Docker, através do script `build.sh`.
+
+### Estrutura do `libcsv.c`
+
+O `libcsv.c` contém funções que realizam operações críticas de processamento CSV de maneira eficiente.
+
+
 # Processador de CSV
 
 Este desafio visa avaliar suas habilidades técnicas e capacidade de solucionar problemas reais, desenvolvendo uma biblioteca compartilhada ou _shared object_ (.so) que será utilizada por uma aplicação em C.
